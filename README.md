@@ -8,6 +8,7 @@ A copy of RST parser 2.01 http://www.cs.toronto.edu/~weifeng/software.html
 Tested on Ubuntu 14.04 LTS
 
 ### liblbfgs
+
 * Install liblbfgs dev files
 * Check your distribution (this one is Ubuntu 14.04)
   
@@ -18,6 +19,7 @@ Tested on Ubuntu 14.04 LTS
 * Install
   
          $sudo apt-get install liblbfgs-dev
+
 ### Build crfsuite-0.12
 
          $cd feng-hirst-rst-parser-acl-2014-master/tools/crfsuite/crfsuite-0.12/
@@ -45,6 +47,7 @@ Tested on Ubuntu 14.04 LTS
         LEAF:0.063117
         Elaboration[N][S]:0.942829
         LEAF:0.060640
+
 ### Install python NLTK 2.09b
 
         $apt-cache show python-nltk
@@ -54,6 +57,7 @@ Tested on Ubuntu 14.04 LTS
         [..]
 
         $sudo apt-get install python-nltk
+
 ### Test if it works
 
         $feng-hirst-rst-parser-acl-2014-master/src$ python parse.py -t test ../texts/wsj_0607.out
