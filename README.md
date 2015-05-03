@@ -22,9 +22,10 @@ Tested on Ubuntu 14.04 LTS
 
 ### Build crfsuite-0.12
 
-         $cd feng-hirst-rst-parser-acl-2014-master/tools/crfsuite/crfsuite-0.12/
-         $chmod +x configure
-         $./configure
+    $cd feng-hirst-rst-parser-acl-2014-master/tools/crfsuite/crfsuite-0.12/
+    $chmod +x configure
+    $./configure
+         
 * you need to have gcc installed, e.g. `sudo apt-get install build-essential`
 
          $make
@@ -50,14 +51,12 @@ Tested on Ubuntu 14.04 LTS
 
 ### Install python NLTK 2.09b
 
-        $apt-cache show python-nltk
-
-        [..]
-        Version: 2.0~b9-0ubuntu4 (on ubuntu 14.04)
-        [..]
-
-        $sudo apt-get install python-nltk
+    $apt-cache show python-nltk
+    [..]
+    Version: 2.0~b9-0ubuntu4 (on ubuntu 14.04)
+    [..]
+    $sudo apt-get install python-nltk
 
 ### Test if it works
 
-        $feng-hirst-rst-parser-acl-2014-master/src$ python parse.py -t test ../texts/wsj_0607.out
+    $feng-hirst-rst-parser-acl-2014-master/src$ python parse.py -t test ../texts/wsj_0607.out
