@@ -18,7 +18,9 @@ class CRFClassifier:
         self.classifier_cmd = '%s/crfsuite-stdin tag -pi -m %s -' % (paths.CRFSUITE_PATH, 
 							 os.path.join(self.model_path, self.model_fname))
 #        print self.classifier_cmd
-        self.classifier = subprocess.Popen(self.classifier_cmd, shell = True, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+        #self.classifier = subprocess.Popen(self.classifier_cmd, shell = True, stdin = subprocess.PIPE, stderr = subprocess.PIPE)
+        self.classifier = subprocess.Popen( self.classifier_cmd,shell = True, stdin = subprocess.PIPE,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+ 
         
         if self.classifier.poll():
             raise OSError('Could not create classifier subprocess, with error info:\n%s' % self.classifier.stderr.readline())
@@ -29,16 +31,20 @@ class CRFClassifier:
     def classify(self, vectors):
 #        print '\n'.join(vectors) + "\n\n"
         
-        self.classifier.stdin.write('\n'.join(vectors) + "\n\n")
+#        self.classifier.stdin.write('\n'.join(vectors) + "\n\n")
         
-        lines = []
-        line = self.classifier.stderr.readline()
-        while (line.strip() != ''):
+#        lines = []
+#        line = self.classifier.stderr.readline()
+#        while (line.strip() != ''):
 #            print line
-            lines.append(line)
-            line = self.classifier.stderr.readline()
+#            lines.append(line)
+#            line = self.classifier.stderr.readline()
         
-        
+        self.classifier = subprocess.Popen( self.classifier_cmd,shell = True, stdin = subprocess.PIPE,stdout=subprocess.PIPE, stderr = subprocess.PIPE)
+        if self.classifier.poll():
+            raise OSError('crf_classifier subprocess died')
+        stdoutdata, stderrdata=self.classifier.communicate('\n'.join(vectors) + "\n\n") #amita add
+        lines = stdoutdata.splitlines()
         if self.classifier.poll():
             raise OSError('crf_classifier subprocess died')
         
